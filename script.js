@@ -5,8 +5,15 @@ const images = document.querySelectorAll('.carousel-image');
 let currentIndex = 0;
 let lastInteraction = Date.now();
 
+function updateTrackWidth() {
+  track.style.width = `${images.length * 100}%`;
+  images.forEach(img => {
+    img.style.width = `${100 / images.length}%`;
+  });
+}
+
 function updateSlidePosition() {
-  const slideWidth = images[0].clientWidth;
+  const slideWidth = document.querySelector('.carousel').clientWidth;
   track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 }
 
@@ -62,5 +69,6 @@ document.querySelector('.carousel').addEventListener('touchend', (e) => {
 window.addEventListener('resize', updateSlidePosition);
 
 // Initialize
+updateTrackWidth();
 updateSlidePosition();
 startAutoplay();
