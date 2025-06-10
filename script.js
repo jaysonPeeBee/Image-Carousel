@@ -1,7 +1,9 @@
+
 const track = document.querySelector('.carousel-track');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const images = document.querySelectorAll('.carousel-image');
+const slideCount = images.length - 1; // last is a clone
 let currentIndex = 0;
 let lastInteraction = Date.now();
 
@@ -12,19 +14,41 @@ function updateTrackWidth() {
   });
 }
 
-function updateSlidePosition() {
+function updateSlidePosition(animate = true) {
   const slideWidth = document.querySelector('.carousel').clientWidth;
+  if (!animate) {
+    track.style.transition = "none";
+  } else {
+    track.style.transition = "transform 0.5s ease-in-out";
+  }
   track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 }
 
 function nextImage() {
-  currentIndex = (currentIndex + 1) % images.length;
-  updateSlidePosition();
+  if (currentIndex < slideCount) {
+    currentIndex++;
+    updateSlidePosition();
+  }
+  if (currentIndex === slideCount) {
+    setTimeout(() => {
+      currentIndex = 0;
+      updateSlidePosition(false);
+    }, 500);
+  }
 }
 
 function prevImage() {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateSlidePosition();
+  if (currentIndex === 0) {
+    currentIndex = slideCount;
+    updateSlidePosition(false);
+    setTimeout(() => {
+      currentIndex--;
+      updateSlidePosition();
+    }, 50);
+  } else {
+    currentIndex--;
+    updateSlidePosition();
+  }
 }
 
 function resetAutoplayTimer() {
@@ -49,12 +73,10 @@ prevBtn.addEventListener('click', () => {
   resetAutoplayTimer();
 });
 
-// Touch swipe
 let startX = 0;
 document.querySelector('.carousel').addEventListener('touchstart', (e) => {
   startX = e.touches[0].clientX;
 });
-
 document.querySelector('.carousel').addEventListener('touchend', (e) => {
   const endX = e.changedTouches[0].clientX;
   if (endX < startX - 30) {
@@ -66,9 +88,9 @@ document.querySelector('.carousel').addEventListener('touchend', (e) => {
   }
 });
 
-window.addEventListener('resize', updateSlidePosition);
+window.addEventListener('resize', () => updateSlidePosition(false));
 
-// Initialize
+// Init
 updateTrackWidth();
-updateSlidePosition();
+updateSlidePosition(false);
 startAutoplay();
