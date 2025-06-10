@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Responsive Carousel</title>
+  <title>Sliding Carousel</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -12,11 +12,13 @@
       <img src="arrow-left.png" alt="Left"/>
     </button>
     <div class="carousel">
-      <img src="Image1.png" class="carousel-image active" alt="Image1" />
-      <img src="Image2.gif" class="carousel-image" alt="Image2" />
-      <img src="Image3.png" class="carousel-image" alt="Image3" />
-      <img src="Image4.gif" class="carousel-image" alt="Image4" />
-      <img src="Image5.png" class="carousel-image" alt="Image5" />
+      <div class="carousel-track">
+        <img src="Image1.png" class="carousel-image" alt="Image1" />
+        <img src="Image2.gif" class="carousel-image" alt="Image2" />
+        <img src="Image3.png" class="carousel-image" alt="Image3" />
+        <img src="Image4.gif" class="carousel-image" alt="Image4" />
+        <img src="Image5.png" class="carousel-image" alt="Image5" />
+      </div>
     </div>
     <button class="nav-button right" id="nextBtn">
       <img src="arrow-right.png" alt="Right"/>

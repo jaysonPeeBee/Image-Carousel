@@ -1,62 +1,55 @@
-
-const images = document.querySelectorAll('.carousel-image');
+const track = document.querySelector('.carousel-track');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
+const images = document.querySelectorAll('.carousel-image');
 let currentIndex = 0;
-let autoplayInterval;
 let lastInteraction = Date.now();
 
-function updateCarousel() {
-  images.forEach((img, idx) => {
-    img.classList.remove('active');
-    img.style.opacity = 0;
-    img.style.transition = 'opacity 0.5s ease';
-  });
-  images[currentIndex].classList.add('active');
-  images[currentIndex].style.opacity = 1;
+function updateSlidePosition() {
+  const slideWidth = images[0].clientWidth;
+  track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 }
 
 function nextImage() {
   currentIndex = (currentIndex + 1) % images.length;
-  updateCarousel();
+  updateSlidePosition();
 }
 
 function prevImage() {
   currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateCarousel();
+  updateSlidePosition();
 }
 
 function resetAutoplayTimer() {
   lastInteraction = Date.now();
 }
 
-// autoplay logic
 function startAutoplay() {
-  autoplayInterval = setInterval(() => {
-    if (Date.now() - lastInteraction >= 10000) {
+  setInterval(() => {
+    if (Date.now() - lastInteraction > 10000) {
       nextImage();
     }
-  }, 3000); // changes every 3s if no user interaction
+  }, 3000);
 }
-
-prevBtn.addEventListener('click', () => {
-  prevImage();
-  resetAutoplayTimer();
-});
 
 nextBtn.addEventListener('click', () => {
   nextImage();
   resetAutoplayTimer();
 });
 
+prevBtn.addEventListener('click', () => {
+  prevImage();
+  resetAutoplayTimer();
+});
+
 // Touch swipe
 let startX = 0;
-document.querySelector('.carousel-wrapper').addEventListener('touchstart', (e) => {
+document.querySelector('.carousel').addEventListener('touchstart', (e) => {
   startX = e.touches[0].clientX;
-}, false);
+});
 
-document.querySelector('.carousel-wrapper').addEventListener('touchend', (e) => {
-  let endX = e.changedTouches[0].clientX;
+document.querySelector('.carousel').addEventListener('touchend', (e) => {
+  const endX = e.changedTouches[0].clientX;
   if (endX < startX - 30) {
     nextImage();
     resetAutoplayTimer();
@@ -64,8 +57,10 @@ document.querySelector('.carousel-wrapper').addEventListener('touchend', (e) => 
     prevImage();
     resetAutoplayTimer();
   }
-}, false);
+});
 
-// init
-updateCarousel();
+window.addEventListener('resize', updateSlidePosition);
+
+// Initialize
+updateSlidePosition();
 startAutoplay();
