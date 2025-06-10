@@ -5,11 +5,13 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
   height: 100%;
-  background: transparent;
-  font-family: sans-serif;
+  width: 100%;
+  background-color: transparent !important;
+  background: none !important;
+  overflow: hidden;
 }
+
 
 .carousel-wrapper {
   display: flex;
