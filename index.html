@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Carousel</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Carousel</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="carousel-container">
-        <button class="arrow left" id="prevBtn">
-            <img src="arrow-left.png" alt="Previous">
-        </button>
-        <div class="carousel">
-            <img src="Image1.png" class="carousel-image active" alt="Image1">
-            <img src="Image2.gif" class="carousel-image" alt="Image2">
-            <img src="Image3.png" class="carousel-image" alt="Image3">
-            <img src="Image4.gif" class="carousel-image" alt="Image4">
-            <img src="Image5.png" class="carousel-image" alt="Image5">
-        </div>
-        <button class="arrow right" id="nextBtn">
-            <img src="arrow-right.png" alt="Next">
-        </button>
+  <div class="carousel-wrapper">
+    <button class="nav-button left" id="prevBtn">
+      <img src="arrow-left.png" alt="Left"/>
+    </button>
+    <div class="carousel">
+      <img src="Image1.png" class="carousel-image active" alt="Image1" />
+      <img src="Image2.gif" class="carousel-image" alt="Image2" />
+      <img src="Image3.png" class="carousel-image" alt="Image3" />
+      <img src="Image4.gif" class="carousel-image" alt="Image4" />
+      <img src="Image5.png" class="carousel-image" alt="Image5" />
     </div>
-    <script src="script.js"></script>
+    <button class="nav-button right" id="nextBtn">
+      <img src="arrow-right.png" alt="Right"/>
+    </button>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
