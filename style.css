@@ -3,15 +3,15 @@
 }
 
 html, body {
+  background-color: #FDD42A !important;
+
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
-  background-color: transparent !important;
-  background: none !important;
   overflow: hidden;
+  height: 100%;
+  background: #FDD42A;
+  font-family: sans-serif;
 }
-
 
 .carousel-wrapper {
   display: flex;
