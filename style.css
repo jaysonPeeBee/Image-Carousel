@@ -1,15 +1,14 @@
+
 * {
   box-sizing: border-box;
 }
 
 html, body {
-  background-color: #FDD42A !important;
-
   margin: 0;
   padding: 0;
   overflow: hidden;
   height: 100%;
-  background: #FDD42A;
+  background: #FDD42A !important;
   font-family: sans-serif;
 }
 
@@ -32,7 +31,7 @@ html, body {
 .carousel-track {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 500%; /* will be overridden dynamically */
+  width: 600%;
 }
 
 .carousel-image {
@@ -45,10 +44,9 @@ html, body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   border: none;
-  padding: 10px;
-  border-radius: 50%;
+  padding: 0;
   cursor: pointer;
   z-index: 2;
   transition: all 0.3s ease;
@@ -62,12 +60,14 @@ html, body {
   right: 20px;
 }
 
-.nav-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-50%) scale(1.1);
+.nav-button:hover img {
+  transform: scale(1.1);
+  opacity: 0.9;
+  transition: all 0.3s ease;
 }
 
 .nav-button img {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
+  transition: all 0.3s ease;
 }
